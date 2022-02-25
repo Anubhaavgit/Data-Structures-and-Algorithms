@@ -14,22 +14,30 @@
  * }
  */
 class Solution {
-    void check(TreeNode root,int curr,int target,ArrayList<Integer>arr)
+    // void check(TreeNode root,int curr,int target,ArrayList<Integer>arr)
+    // {
+    //     if(root==null)
+    //         return;
+    //     curr+=root.val;
+    //     if(root.left==null&&root.right==null)
+    //     {
+    //         arr.add(curr);
+    //         return;
+    //     }
+    //     check(root.left,curr,target,arr);
+    //     check(root.right,curr,target,arr);
+    // }
+    // public boolean hasPathSum(TreeNode root, int targetSum) {
+    //     ArrayList<Integer>arr=new ArrayList<>();
+    //     check(root,0,targetSum,arr);
+    //     return arr.contains(targetSum);
+    // }
+    public boolean hasPathSum(TreeNode root, int targetSum)
     {
         if(root==null)
-            return;
-        curr+=root.val;
+            return false;
         if(root.left==null&&root.right==null)
-        {
-            arr.add(curr);
-            return;
-        }
-     check(root.left,curr,target,arr);
-        check(root.right,curr,target,arr);
-    }
-    public boolean hasPathSum(TreeNode root, int targetSum) {
-        ArrayList<Integer>arr=new ArrayList<>();
-        check(root,0,targetSum,arr);
-        return arr.contains(targetSum);
+            return (targetSum-root.val==0);
+        return hasPathSum(root.left,targetSum-root.val)||hasPathSum(root.right,targetSum-root.val);
     }
 }

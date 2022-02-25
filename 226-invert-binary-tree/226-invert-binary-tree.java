@@ -22,19 +22,25 @@ class Solution {
         return root;
     }
     public TreeNode invertTree(TreeNode root) {
+        // if(root==null)
+        //     return root;
+        // Queue<TreeNode>q=new LinkedList<>();
+        // q.add(root);
+        // while(!q.isEmpty())
+        // {
+        //     TreeNode curr=q.poll();
+        //     if(curr==null)
+        //         continue;
+        //     curr=swap(curr);
+        //     q.add(curr.left);
+        //     q.add(curr.right);
+        // }
+        // return root;
         if(root==null)
-            return root;
-        Queue<TreeNode>q=new LinkedList<>();
-        q.add(root);
-        while(!q.isEmpty())
-        {
-            TreeNode curr=q.poll();
-            if(curr==null)
-                continue;
-            curr=swap(curr);
-            q.add(curr.left);
-            q.add(curr.right);
-        }
+            return null;
+        root=swap(root);
+        invertTree(root.left);
+        invertTree(root.right);
         return root;
     }
 }

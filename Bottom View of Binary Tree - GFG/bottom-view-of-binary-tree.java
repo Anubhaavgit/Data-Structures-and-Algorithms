@@ -144,14 +144,8 @@ class Solution
            Pair p=q.poll();
            Node curr=p.node;
            int hd=p.hd;
-           if(!mp.containsKey(hd))
-           {
-               mp.put(hd,curr.data);
-           }
-           else
-           {
+          
               mp.put(hd,curr.data);
-           }
            if(curr.left!=null)
             q.add(new Pair(curr.left,hd-1));
             

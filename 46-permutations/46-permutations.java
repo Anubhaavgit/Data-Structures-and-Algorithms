@@ -8,12 +8,10 @@ class Solution {
         }
         for(int i=0;i<nums.length;i++)
         {
-            if(!isTaken[i])
+            if(!ds.contains(nums[i]))
             {
-                isTaken[i]=true;
                 ds.add(nums[i]);
                 permutations(nums,ans,ds,isTaken);
-                isTaken[i]=false;
                 ds.remove(ds.size()-1);
             }
         }

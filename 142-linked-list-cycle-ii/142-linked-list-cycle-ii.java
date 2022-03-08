@@ -20,20 +20,16 @@ public class Solution {
             fast=fast.next.next;
             slow=slow.next;
             if(slow==fast)
-                break;
-        }
-        System.out.println(slow.val);
-        if(slow==fast)
-        {
-            slow=head;
-            while(slow!=fast)
             {
-                fast=fast.next;
-                slow=slow.next;
+                slow=head;
+                while(slow!=fast)
+                {
+                    fast=fast.next;
+                    slow=slow.next;
+                }
+                return slow;
             }
-            return slow;
         }
         return null;
-        
     }
 }

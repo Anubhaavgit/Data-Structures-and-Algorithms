@@ -30,7 +30,7 @@ class Solution {
             carry=sum/10;
             ListNode temp=new ListNode(sum%10);
             p.next=temp;
-            p=p.next;
+            p=temp;
         }
         return head.next;
     }

@@ -19,22 +19,22 @@ class Solution {
         if(root==null)
             return list;
         Stack<TreeNode> s1=new Stack<>();
-        Stack<TreeNode> s2=new Stack<>();
+        // Stack<TreeNode> s2=new Stack<>();
         s1.push(root);
         while(!s1.isEmpty())
         {
             TreeNode curr=s1.pop();
-            s2.push(curr);
+            list.add(0,curr.val);
             if(curr.left!=null)
                 s1.push(curr.left);
             if(curr.right!=null)
                 s1.push(curr.right);
         }
-        while(!s2.isEmpty())
-        {
-            TreeNode curr=s2.pop();
-            list.add(curr.val);
-        }
+        // while(!s2.isEmpty())
+        // {
+        //     TreeNode curr=s2.pop();
+        //     list.add(curr.val);
+        // }
         return list;
     }
 }

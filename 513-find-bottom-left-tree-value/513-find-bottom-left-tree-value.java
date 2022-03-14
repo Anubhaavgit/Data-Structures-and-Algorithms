@@ -14,16 +14,21 @@
  * }
  */
 class Solution {
+    int maxheight=0,ans=0;
     public int findBottomLeftValue(TreeNode root) {
-        Queue<TreeNode>q=new LinkedList<>();
-        q.add(root);
-         TreeNode curr=null;
-        while(!q.isEmpty())
+        findElement(root,1);
+        return ans;
+    }
+    void findElement(TreeNode root,int height)
+    {
+        if(root==null)
+            return;
+        if(maxheight<height)
         {
-            curr=q.poll();
-            if(curr.right!=null)q.add(curr.right);
-            if(curr.left!=null)q.add(curr.left);
+            maxheight=height;
+            ans=root.val;
         }
-        return curr.val;
+        findElement(root.left,height+1);
+        findElement(root.right,height+1);
     }
 }

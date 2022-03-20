@@ -15,27 +15,30 @@
  */
 class Solution {
     int preindex=0;
-    TreeNode BTree(int[]pre,int[]in, int is,int ie)
+    TreeNode BTree(int[]pre,HashMap<Integer,Integer>hm, int is,int ie)
     {
         
         if(is>ie)
             return null;
         TreeNode temp=new TreeNode(pre[preindex++]);
         
-        int inIdx=0;
-        for(int i=is;i<=ie;i++)
-        {
-            if(in[i]==temp.val)
-            {
-                inIdx=i;
-                break;
-            }
-        }
-        temp.left=BTree(pre,in,is,inIdx-1);
-        temp.right=BTree(pre,in,inIdx+1,ie);
+        int inIdx=hm.get(temp.val);
+        // for(int i=is;i<=ie;i++)
+        // {
+        //     if(in[i]==temp.val)
+        //     {
+        //         inIdx=i;
+        //         break;
+        //     }
+        // }
+        temp.left=BTree(pre,hm,is,inIdx-1);
+        temp.right=BTree(pre,hm,inIdx+1,ie);
         return temp;
     }
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        return BTree(preorder,inorder,0,preorder.length-1);   
+        HashMap<Integer,Integer>hm=new HashMap<>();
+        for(int i=0;i<inorder.length;i++)
+            hm.put(inorder[i],i);
+        return BTree(preorder,hm,0,preorder.length-1);   
     }
 }

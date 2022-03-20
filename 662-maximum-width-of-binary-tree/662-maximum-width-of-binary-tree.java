@@ -13,46 +13,25 @@
  *     }
  * }
  */
-class Pair
-{
-    TreeNode node;
-    int position;
-    Pair(TreeNode n,int pos)
-    {
-        node=n;
-        position=pos;
-    }
-}
 class Solution {
+    int max=0;
+    void helper(TreeNode root,int hd,int position,TreeMap<Integer,Integer>mp)
+    {
+        if(root==null)
+            return;
+        mp.computeIfAbsent(hd,x->position);
+        if(mp.get(hd)!=null)
+            max=Math.max(max,position-mp.get(hd)+1);
+        helper(root.left,hd+1,position*2,mp);
+        helper(root.right,hd+1,position*2+1,mp);
+    }
     public int widthOfBinaryTree(TreeNode root) {
         if(root==null)
             return 0;
-        Queue<Pair>q=new LinkedList<>();
-        q.add(new Pair(root,1));
-        int max=0;
-              
-        while(!q.isEmpty())
-        {
-            int first=0,last=0;
-            int count=q.size();
-            int mmin=q.peek().position;
-            for(int i=0;i<count;i++)
-            {
-                int pos=q.peek().position-mmin;
-                TreeNode curr=q.poll().node;
-
-                if(i==0)
-                    first=pos;
-                if(i==count-1)
-                    last=pos;
-                
-                if(curr.left!=null)
-                    q.add(new Pair(curr.left,pos*2));
-                if(curr.right!=null)
-                    q.add(new Pair(curr.right,pos*2+1));
-            }
-            max=Math.max(max,last-first+1);
-        }
+        TreeMap<Integer,Integer>mp=new TreeMap<>();
+        helper(root,0,1,mp);
+        int first=mp.firstKey();
+        int last=mp.lastKey();
         return max;
     }
 }

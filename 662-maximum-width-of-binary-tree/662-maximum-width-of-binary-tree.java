@@ -35,10 +35,10 @@ class Solution {
         {
             int first=0,last=0;
             int count=q.size();
-            max=Math.max(max,count);
+            int mmin=q.peek().position;
             for(int i=0;i<count;i++)
             {
-                int pos=q.peek().position;
+                int pos=q.peek().position-mmin;
                 TreeNode curr=q.poll().node;
 
                 if(i==0)

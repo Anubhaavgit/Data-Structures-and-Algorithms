@@ -20,7 +20,6 @@ class Solution {
         if(root==null)
             return;
         mp.computeIfAbsent(hd,x->position);
-        if(mp.get(hd)!=null)
             max=Math.max(max,position-mp.get(hd)+1);
         helper(root.left,hd+1,position*2,mp);
         helper(root.right,hd+1,position*2+1,mp);
